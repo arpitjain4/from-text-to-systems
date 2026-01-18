@@ -1,0 +1,52 @@
+Why bits break once they leave memory!
+
+In the last post [https://lnkd.in/gigscMu8], we saw that bits can flip once they leave memory.
+But we were still cheating a little — we flipped bits on purpose.
+
+In the real world, bits don’t get flipped directly.
+
+To communicate, information has to become something physical.
+Voltage on a wire.
+Energy in the air.
+
+And the moment information leaves memory and turns into a signal, the world starts interfering.
+
+Here’s the part we usually skip thinking about:
+
+The receiver never sees only the message.
+
+It always sees what was sent + what the world added.
+
+Now pause for a second.
+
+What if the channel is a copper wire?
+What if it’s air?
+What if it’s water, light, or something else entirely?
+
+Is the disturbance the same in all cases?
+Does every medium affect energy in the same way?
+
+Of course not.
+
+Wires guide energy along a controlled path.
+Air lets energy spread, reflect, collide, and fade.
+
+Distance weakens signals.
+Interference reshapes them.
+And by the time a signal reaches the receiver, it has already been negotiated by the physical world.
+
+The receiver doesn’t read bits.
+It infers intent from a distorted observation.
+
+Nothing has gone wrong yet.
+This is simply what it means to communicate through reality.
+
+You might notice there’s no code in this post.
+That’s intentional — this one is about the message before engineers try to tame the noise.
+
+The next question engineers had to answer was:
+
+How do we describe this mess in a way we can actually design systems around?
+
+That’s where noise stops being hand-wavy — and becomes a model.
+
