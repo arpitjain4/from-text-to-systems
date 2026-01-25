@@ -1,0 +1,125 @@
+How does a receiver decode noisy messages? (Why AWGN actually matters)
+
+In the last few posts, we uncovered some uncomfortable truths:
+
+• Messages become bits
+• Bits leave memory and turn physical
+• The receiver never sees bits — only noisy reality
+• Noise can’t be removed, only modeled
+• And somehow… AWGN keeps winning [https://lnkd.in/gpKXTDdx]
+
+But we left off at the real question:
+
+Given noisy numbers… how does a receiver decide what was sent?
+
+Let’s answer this with the simplest possible example.
+
+Step 0: A shared agreement
+
+Assume sender and receiver agree on this mapping:
+
+H → +10
+E → 0
+Y → −10
+
+(No magic here. Every real system has such an agreement. We’ll name it later.)
+
+So when I send “HEY”, I’m really sending numbers.
+
+What the receiver actually sees
+
+Suppose I send H → +10.
+
+Noise kicks in.
+
+The receiver sees: 9.2
+
+Now what?
+
+Case 1: AWGN (Gaussian noise)
+
+With AWGN, each transmitted value creates a bell-shaped cloud (inverted U) around itself.
+
+• H → bell around +10
+• E → bell around 0
+• Y → bell around −10
+
+Most values stay near the center.
+Far values are rare.
+
+So the receiver’s rule becomes:
+
+Which center is this value closest to?
+
+For 9.2:
+
+• Very close to +10
+• Far from 0
+• Very far from −10
+
+→ Decode as H
+
+This is the key idea:
+With Gaussian noise, distance becomes likelihood.
+
+What sets the bell width?
+
+The width tells us how noisy the channel is:
+
+• Narrow bell → clean channel
+• Wide bell → noisy channel
+
+The receiver doesn’t guess this; it learns it from the channel over time.
+
+Case 2: Uniform noise
+
+Uniform noise doesn’t create bells.
+It creates rectangles.
+
+Inside a rectangle:
+
+• Every value is equally likely
+• Center isn’t special
+• Edges aren’t rare
+
+So when the receiver sees 9.2, it thinks:
+
+“Could be H…
+or E…
+or maybe even Y…”
+
+No clear “most likely.”
+No clean decision rule.
+
+Uniform noise destroys structure.
+
+Case 3: Poisson noise
+
+Poisson noise is discrete.
+
+It models counts and events.
+
+If the receiver sees 9.2, Poisson says:
+
+“I don’t even define probabilities here.”
+
+Great for packet arrivals.
+Terrible for general signal corruption.
+
+Why AWGN wins
+
+AWGN turns decoding into geometry.
+
+Receivers don’t remove noise.
+They compare explanations.
+
+Which transmitted value best explains what I saw?
+
+And that’s how HEY → HEY survives noise.
+
+So decoding is really about choosing the most likely explanation.
+
+But how do real systems define these “regions of choice” efficiently?
+
+That’s where things get interesting.
+
